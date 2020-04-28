@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CoursesList from './CoursesList';
 import './App.css';
 
@@ -42,9 +42,20 @@ const courses = [
 ];
 
 const App = () => {
+    const [searchText, setSearchText] = useState('');
+    //const [$variable, $function] = empty state('');
+
     const handleSearchInputChange = (event) => {
-        console.log(event.target.value);
+        //console.log(event.target.value);
+        setSearchText(event.target.value);
     };
+
+    const filteredCourses = courses.filter((course) => {
+        return (
+            course.title.includes(searchText) ||
+            course.author.includes(searchText)
+        );
+    });
 
     return (
         <div className='App'>
@@ -56,7 +67,7 @@ const App = () => {
                 onChange={handleSearchInputChange}
             />
 
-            <CoursesList courses={courses} />
+            <CoursesList courses={filteredCourses} />
         </div>
     );
 };
