@@ -41,13 +41,13 @@ const courses = [
     },
 ];
 
-function App() {
+const App = () => {
     return (
         <div className='App'>
             <h1>Liste des cours</h1>
             <CoursesList courses={courses} />
         </div>
     );
-}
+};
 
 export default App;
