@@ -11,6 +11,7 @@ const courses = [
         number_of_lectures: 350,
         rating: 3.5,
         url: 'https://mysupercourse/',
+        language: ['javascript'],
     },
     {
         id: 2,
@@ -20,6 +21,7 @@ const courses = [
         number_of_lectures: 50,
         rating: 4.6,
         url: 'https://mysupercourse/',
+        language: ['html'],
     },
     {
         id: 3,
@@ -29,15 +31,17 @@ const courses = [
         number_of_lectures: 1260,
         rating: 4.9,
         url: 'https://mysupercourse/',
+        language: ['javascript', 'html', 'php'],
     },
     {
         id: 4,
-        title: 'The Magic Book',
+        title: 'Apprendre le PHP',
         author: 'Laurianne',
         hours_video: 8.5,
         number_of_lectures: 260,
         rating: 3.8,
         url: 'https://mysupercourse/',
+        language: ['css', 'php'],
     },
 ];
 
@@ -56,6 +60,10 @@ const App = () => {
             course.author.includes(searchText)
         );
     });
+
+    // const filteredCoursesByLanguage = courses.filter((course) => {
+    //     return course.language.includes(searchText);
+    // });
 
     return (
         <div className='App'>
