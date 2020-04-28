@@ -41,19 +41,24 @@ const courses = [
 ];
 
 function App() {
-    const saluer = {
-        saluer_one: 'Hello',
-        saluer_two: 'World',
-    };
-    function saluer_react() {
-        return 'Hello from React';
-    }
     return (
         <div className='App'>
-            <h1>
-                {saluer.saluer_one} {saluer.saluer_two}
-            </h1>
-            <span>{saluer_react()}</span>
+            <h1>Liste des cours</h1>
+            {courses.map((course) => {
+                return (
+                    <div className='course-list' key={course.id}>
+                        {course.title}
+                        <span>
+                            <a href='{course.url}'>{course.url}</a>
+                        </span>
+                        <span>Par {course.author}</span>
+                        <span>Note: {course.rating}</span>
+                        <span>
+                            Nombre de lectures: {course.number_of_lectures}
+                        </span>
+                    </div>
+                );
+            })}
         </div>
     );
 }
