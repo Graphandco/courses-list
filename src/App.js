@@ -42,9 +42,20 @@ const courses = [
 ];
 
 const App = () => {
+    const handleSearchInputChange = (event) => {
+        console.log(event.target.value);
+    };
+
     return (
         <div className='App'>
             <h1>Liste des cours</h1>
+            <label htmlFor='searchInput'>Rechercher: </label>
+            <input
+                id='searchInput'
+                type='text'
+                onChange={handleSearchInputChange}
+            />
+
             <CoursesList courses={courses} />
         </div>
     );
