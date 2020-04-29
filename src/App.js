@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import CoursesList from './CoursesList';
 import SuperHero from './SuperHero';
+import LikeArea from './LikeArea';
 import './App.css';
 
 import Grid from '@material-ui/core/Grid';
@@ -142,6 +143,8 @@ const App = () => {
             </ul>
 
             <p>Il est actuellement {theTime}</p>
+
+            <LikeArea />
         </div>
     );
 };
