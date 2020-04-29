@@ -7,6 +7,11 @@ import './App.css';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 
@@ -52,30 +57,31 @@ const courses = [
         language: ['css', 'php'],
     },
 ];
-const superheros = [
-    {
-        id: 1,
-        name: 'Hulk',
-        realname: 'Bruce Banner',
-    },
-    {
-        id: 2,
-        name: 'Iron Man',
-        realname: 'Tony Stark',
-    },
-    {
-        id: 3,
-        name: 'Spiderman',
-        realname: 'Peter Parker',
-    },
-    {
-        id: 4,
-        name: 'Batman',
-        realname: 'Bruce Wayne',
-    },
-];
 
 const App = () => {
+    const [superheros, setSuperHeros] = useState([
+        {
+            id: 1,
+            name: 'Hulk',
+            realname: 'Bruce Banner',
+        },
+        {
+            id: 2,
+            name: 'Iron Man',
+            realname: 'Tony Stark',
+        },
+        {
+            id: 3,
+            name: 'Spiderman',
+            realname: 'Peter Parker',
+        },
+        {
+            id: 4,
+            name: 'Batman',
+            realname: 'Bruce Wayne',
+        },
+    ]);
+
     const [searchText, setSearchText] = useState('');
     //const [$variable, $function] = empty state('');
 
@@ -91,14 +97,51 @@ const App = () => {
         );
     });
 
-    const [theTime, setTheTime] = useState(new Date().toLocaleString());
-    setTimeout(() => {
-        setTheTime(new Date().toLocaleString());
-    }, 1000);
+    // const [theTime, setTheTime] = useState(new Date().toLocaleString());
+    // setTimeout(() => {
+    //     setTheTime(new Date().toLocaleString());
+    // }, 1000);
 
     // const filteredCoursesByLanguage = courses.filter((course) => {
     //     return course.language.includes(searchText);
     // });
+
+    const AddHeroForm = (props) => {
+        const [name, setName] = useState();
+        const [realname, setRealName] = useState();
+
+        const heroSubmit = (e) => {
+            e.preventDefault();
+            props.setSuperHeros((previous) =>
+                previous.concat({
+                    name,
+                    realname,
+                    id: Date.now(),
+                })
+            );
+        };
+        return (
+            <form onSubmit={heroSubmit}>
+                <FormControl onChange={(e) => setName(e.target.value)}>
+                    <InputLabel htmlFor='my-input'>Nom</InputLabel>
+                    <Input id='input1' aria-describedby='my-helper-text' />
+                    <FormHelperText id='my-helper-text'>
+                        Pseudo du Superhéros
+                    </FormHelperText>
+                </FormControl>
+                <FormControl onChange={(e) => setRealName(e.target.value)}>
+                    <InputLabel htmlFor='my-input'>Vrai Nom</InputLabel>
+                    <Input id='input2' aria-describedby='my-helper-text' />
+                    <FormHelperText id='my-helper-text'>
+                        Véritable nom du Superhéros
+                    </FormHelperText>
+                </FormControl>
+                <Button variant='contained' color='primary' type='submit'>
+                    Ajouter
+                </Button>
+            </form>
+        );
+    };
 
     return (
         <div className='App'>
@@ -127,6 +170,9 @@ const App = () => {
             <Grid container direction='row' alignItems='stretch'>
                 <CoursesList courses={filteredCourses} />
             </Grid>
+
+            <AddHeroForm setSuperHeros={setSuperHeros} />
+
             {/* //SuperHero List */}
             <ul className='superhero-list'>
                 <Typography>
@@ -142,7 +188,7 @@ const App = () => {
                 </Typography>
             </ul>
 
-            <p>Il est actuellement {theTime}</p>
+            {/* <p>Il est actuellement {theTime}</p> */}
 
             <LikeArea />
         </div>
