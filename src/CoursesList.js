@@ -6,7 +6,7 @@ const CoursesList = ({ courses }) => {
     return courses.map((course) => {
         return (
             <Grid
-                style={{ padding: '1vw' }}
+                style={{ padding: 'calc(.2rem + .8vw)' }}
                 item
                 xs={12}
                 sm={6}

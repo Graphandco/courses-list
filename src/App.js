@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
+import SearchIcon from '@material-ui/icons/Search';
 
 const courses = [
     {
@@ -84,6 +85,11 @@ const App = () => {
                 <Box mb={2}>
                     <TextField
                         label='Rechercher'
+                        InputProps={{
+                            startAdornment: (
+                                <SearchIcon position='start'></SearchIcon>
+                            ),
+                        }}
                         variant='outlined'
                         size='small'
                         className='search-input'
