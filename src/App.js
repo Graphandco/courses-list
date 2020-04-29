@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import CoursesList from './CoursesList';
 import './App.css';
 
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import TextField from '@material-ui/core/TextField';
+
 const courses = [
     {
         id: 1,
@@ -36,7 +41,7 @@ const courses = [
     {
         id: 4,
         title: 'Apprendre le PHP',
-        author: 'Laurianne',
+        author: 'Tony Stark',
         hours_video: 8.5,
         number_of_lectures: 260,
         rating: 3.8,
@@ -56,8 +61,8 @@ const App = () => {
 
     const filteredCourses = courses.filter((course) => {
         return (
-            course.title.includes(searchText) ||
-            course.author.includes(searchText)
+            course.title.toLowerCase().includes(searchText.toLowerCase()) ||
+            course.author.toLowerCase().includes(searchText.toLowerCase())
         );
     });
 
@@ -67,15 +72,31 @@ const App = () => {
 
     return (
         <div className='App'>
-            <h1>Liste des cours</h1>
-            <label htmlFor='searchInput'>Rechercher: </label>
-            <input
+            <Typography>
+                <h1>Liste des cours</h1>
+
+                {/*<label htmlFor='searchInput'>Rechercher: </label>
+             <input
                 id='searchInput'
                 type='text'
                 onChange={handleSearchInputChange}
-            />
-
-            <CoursesList courses={filteredCourses} />
+            /> */}
+                <Box mb={2}>
+                    <TextField
+                        label='Rechercher'
+                        variant='outlined'
+                        size='small'
+                        className='search-input'
+                        inputProps={{ 'aria-label': 'description' }}
+                        id='searchInput'
+                        type='text'
+                        onChange={handleSearchInputChange}
+                    />
+                </Box>
+                <Grid container direction='row' alignItems='stretch'>
+                    <CoursesList courses={filteredCourses} />
+                </Grid>
+            </Typography>
         </div>
     );
 };
