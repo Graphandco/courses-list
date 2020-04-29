@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import CoursesList from './CoursesList';
+import SuperHero from './SuperHero';
 import './App.css';
 
 import Grid from '@material-ui/core/Grid';
@@ -50,6 +51,28 @@ const courses = [
         language: ['css', 'php'],
     },
 ];
+const superheros = [
+    {
+        id: 1,
+        name: 'Hulk',
+        realname: 'Bruce Banner',
+    },
+    {
+        id: 2,
+        name: 'Iron Man',
+        realname: 'Tony Stark',
+    },
+    {
+        id: 3,
+        name: 'Spiderman',
+        realname: 'Peter Parker',
+    },
+    {
+        id: 4,
+        name: 'Batman',
+        realname: 'Bruce Wayne',
+    },
+];
 
 const App = () => {
     const [searchText, setSearchText] = useState('');
@@ -73,36 +96,50 @@ const App = () => {
 
     return (
         <div className='App'>
-            <Typography>
-                <h1>Liste des cours</h1>
-
-                {/*<label htmlFor='searchInput'>Rechercher: </label>
+            <Typography variant='h4' component='h1'>
+                Liste des Cours"
+            </Typography>
+            {/*<label htmlFor='searchInput'>Rechercher: </label>
              <input
                 id='searchInput'
                 type='text'
                 onChange={handleSearchInputChange}
             /> */}
-                <Box mb={2}>
-                    <TextField
-                        label='Rechercher'
-                        InputProps={{
-                            startAdornment: (
-                                <SearchIcon position='start'></SearchIcon>
-                            ),
-                        }}
-                        variant='outlined'
-                        size='small'
-                        className='search-input'
-                        inputProps={{ 'aria-label': 'description' }}
-                        id='searchInput'
-                        type='text'
-                        onChange={handleSearchInputChange}
-                    />
-                </Box>
-                <Grid container direction='row' alignItems='stretch'>
-                    <CoursesList courses={filteredCourses} />
-                </Grid>
-            </Typography>
+
+            <Box m={5}>
+                <TextField
+                    label='Rechercher'
+                    InputProps={{
+                        startAdornment: (
+                            <SearchIcon position='start'></SearchIcon>
+                        ),
+                    }}
+                    variant='outlined'
+                    size='small'
+                    className='search-input'
+                    inputProps={{ 'aria-label': 'description' }}
+                    id='searchInput'
+                    type='text'
+                    onChange={handleSearchInputChange}
+                />
+            </Box>
+            <Grid container direction='row' alignItems='stretch'>
+                <CoursesList courses={filteredCourses} />
+            </Grid>
+
+            <ul className='superhero-list'>
+                <Typography>
+                    {superheros.map((superhero) => {
+                        return (
+                            <SuperHero
+                                key={superhero.id}
+                                name={superhero.name}
+                                realname={superhero.realname}
+                            />
+                        );
+                    })}
+                </Typography>
+            </ul>
         </div>
     );
 };

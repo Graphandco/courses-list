@@ -10,3 +10,7 @@ body {
 .course-list span {
     display: block;
 }
+
+.superhero-list {
+    list-style: none;
+}
