@@ -179,7 +179,9 @@ const App = () => {
                     {superheros.map((superhero) => {
                         return (
                             <SuperHero
+                                setSuperHeros={setSuperHeros}
                                 key={superhero.id}
+                                id={superhero.id}
                                 name={superhero.name}
                                 realname={superhero.realname}
                             />
