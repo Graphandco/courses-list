@@ -90,6 +90,11 @@ const App = () => {
         );
     });
 
+    const [theTime, setTheTime] = useState(new Date().toLocaleString());
+    setTimeout(() => {
+        setTheTime(new Date().toLocaleString());
+    }, 1000);
+
     // const filteredCoursesByLanguage = courses.filter((course) => {
     //     return course.language.includes(searchText);
     // });
@@ -99,13 +104,7 @@ const App = () => {
             <Typography variant='h4' component='h1'>
                 Liste des Cours"
             </Typography>
-            {/*<label htmlFor='searchInput'>Rechercher: </label>
-             <input
-                id='searchInput'
-                type='text'
-                onChange={handleSearchInputChange}
-            /> */}
-
+            {/* //InputText */}
             <Box m={5}>
                 <TextField
                     label='Rechercher'
@@ -123,10 +122,11 @@ const App = () => {
                     onChange={handleSearchInputChange}
                 />
             </Box>
+            {/* //CoursesList */}
             <Grid container direction='row' alignItems='stretch'>
                 <CoursesList courses={filteredCourses} />
             </Grid>
-
+            {/* //SuperHero List */}
             <ul className='superhero-list'>
                 <Typography>
                     {superheros.map((superhero) => {
@@ -140,6 +140,8 @@ const App = () => {
                     })}
                 </Typography>
             </ul>
+
+            <p>Il est actuellement {theTime}</p>
         </div>
     );
 };
